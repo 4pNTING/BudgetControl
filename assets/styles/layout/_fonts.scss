@@ -1,0 +1,71 @@
+@font-face {
+    font-family: "NotoSansLao";
+    font-style: normal;
+    font-weight: 100;
+    src: local("NotoSansLao Regular"), local("NotoSansLao-Regular"),
+        url("./fonts/NotoSansLao-100.woff2") format("woff2"),
+        url("./fonts/NotoSansLao-100.woff") format("woff");
+}
+
+@font-face {
+    font-family: "NotoSansLao";
+    font-style: normal;
+    font-weight: 200;
+    src: local("NotoSansLao ExtraLight"), local("NotoSansLao-ExtraLight"),
+        url("./fonts/NotoSansLao-300.woff2") format("woff2"),
+        url("./fonts/NotoSansLao-300.woff") format("woff");
+}
+
+@font-face {
+    font-family: "NotoSansLao";
+    font-style: normal;
+    font-weight: 300;
+    src: local("NotoSansLao Light"), local("NotoSansLao-Light"),
+        url("./fonts/NotoSansLao-300.woff2") format("woff2"),
+        url("./fonts/NotoSansLao-300.woff") format("woff");
+}
+
+@font-face {
+    font-family: "NotoSansLao";
+    font-style: normal;
+    font-weight: 400;
+    src: local("NotoSansLao Regular"), local("NotoSansLao-Regular"),
+        url("./fonts/NotoSansLao-400.woff2") format("woff2"),
+        url("./fonts/NotoSansLao-400.woff") format("woff");
+}
+
+@font-face {
+    font-family: "NotoSansLao";
+    font-style: normal;
+    font-weight: 500;
+    src: local("NotoSansLao Medium"), local("NotoSansLao-Medium"),
+        url("./fonts/NotoSansLao-500.woff2") format("woff2"),
+        url("./fonts/NotoSansLao-500.woff") format("woff");
+}
+
+@font-face {
+    font-family: "NotoSansLao";
+    font-style: normal;
+    font-weight: 600;
+    src: local("NotoSansLao SemiBold"), local("NotoSansLao-SemiBold"),
+        url("./fonts/NotoSansLao-600.woff2") format("woff2"),
+        url("./fonts/NotoSansLao-600.woff") format("woff");
+}
+
+@font-face {
+    font-family: "NotoSansLao";
+    font-style: normal;
+    font-weight: 800;
+    src: local("NotoSansLao ExtraBold"), local("NotoSansLao-ExtraBold"),
+        url("./fonts/NotoSansLao-800.woff2") format("woff2"),
+        url("./fonts/NotoSansLao-800.woff") format("woff");
+}
+
+@font-face {
+    font-family: "NotoSansLao";
+    font-style: normal;
+    font-weight: 900;
+    src: local("NotoSansLao Black"), local("NotoSansLao-Black"),
+        url("./fonts/NotoSansLao-900.woff2") format("woff2"),
+        url("./fonts/NotoSansLao-900.woff") format("woff");
+}
