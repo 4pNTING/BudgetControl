@@ -2,7 +2,7 @@ import type { Demo } from '@/types';
 
 export const CurrencyService = {
     getCurrencies() {
-        return fetch('/demo/data/currencies.json', { 
+        return fetch('../demo/currencies.json', { 
             headers: { 'Cache-Control': 'no-cache' }
         })
             .then((res) => res.json())
@@ -14,7 +14,7 @@ export const CurrencyService = {
     },
 
     getCurrencyById(id: string) {
-        return fetch(`/demo/data/currency-${id}.json`, {
+        return fetch(`../demo/currency-${id}.json`, {
             headers: { 'Cache-Control': 'no-cache' }
         })
             .then((res) => res.json())
@@ -26,7 +26,7 @@ export const CurrencyService = {
     },
 
     updateCurrency(currency: Demo.Currency) {
-        return fetch(`/demo/data/currency-${currency.id}.json`, {
+        return fetch(`../data/currency-${currency.id}.json`, {
             method: 'PUT',
             headers: { 
                 'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ export const CurrencyService = {
     },
 
     deleteCurrency(id: string) {
-        return fetch(`/demo/data/currency-${id}.json`, {
+        return fetch(`../data/currency-${id}.json`, {
             method: 'DELETE',
             headers: { 'Cache-Control': 'no-cache' }
         })

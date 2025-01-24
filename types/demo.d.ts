@@ -127,7 +127,7 @@ declare namespace Demo {
     }
 
     interface Currency {
-        id: string;
+        id: number;
         code: string;
 
         name: string;

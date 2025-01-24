@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'primereact/button';
 import { confirmDialog } from 'primereact/confirmdialog';
+import { useRouter } from 'next/navigation';
 
 interface ActionButtonsProps {
     rowData: any;
@@ -9,8 +10,11 @@ interface ActionButtonsProps {
 }
 
 export const ActionButtons: React.FC<ActionButtonsProps> = ({ rowData, onEdit, onDelete }) => {
+    const router = useRouter();
+
     const handleEdit = () => {
-        onEdit(rowData.id);
+        console.log('Edit button clicked for ID:', rowData.id); // Debug log
+        router.push(`/admin/currency/edit/${rowData.id}`);
     };
 
     const handleDelete = () => {
@@ -28,18 +32,16 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({ rowData, onEdit, o
         <div className="flex justify-center items-center gap-2">
             <Button 
                 icon="pi pi-pencil"
-                severity="success"
+                className="p-button-rounded p-button-success hover:scale-110 transition-transform duration-200"
                 tooltip="ແກ້ໄຂ"
                 tooltipOptions={{ position: 'top' }}
-                className="p-button-rounded p-button-success hover:scale-110 transition-transform duration-200"
                 onClick={handleEdit}
             />
             <Button 
                 icon="pi pi-trash"
-                severity="danger"
+                className="p-button-rounded p-button-danger hover:scale-110 transition-transform duration-200"
                 tooltip="ລົບ"
                 tooltipOptions={{ position: 'top' }}
-                className="p-button-rounded p-button-danger hover:scale-110 transition-transform duration-200"
                 onClick={handleDelete}
             />
         </div>
