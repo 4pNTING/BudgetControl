@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Button } from 'primereact/button';
-import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 import { DataTable } from 'primereact/datatable';
 import { Column, ColumnBodyOptions } from 'primereact/column';
 import { CurrencyService } from '@/public/demo/CurrencyService';
@@ -10,29 +9,25 @@ import { Demo } from '@/types/demo';
 import { LayoutContext } from '@/layout/context/layoutcontext';
 import '@/assets/styles/scss/badges.scss';
 import { ActionButtons } from '@/view/app/components/ActionButtons';
-import { ConfirmDialog } from 'primereact/confirmdialog';
+import { confirmDialog, ConfirmDialog } from 'primereact/confirmdialog';
 import { useRouter } from 'next/navigation';
 import { Toast } from 'primereact/toast';
-import { useRef } from 'react';
 
 const CurrencyPage = () => {
     const { layoutConfig } = useContext(LayoutContext);
     const [currencies, setCurrencies] = useState<Demo.Currency[]>([]);
-const router = useRouter();
+    const router = useRouter();
     const toast = useRef<Toast>(null);
+
     useEffect(() => {
         CurrencyService.getCurrencies().then((data) => setCurrencies(data));
     }, []);
-
-
-    
 
     const bodyTemplate = (data: Demo.Currency, props: ColumnBodyOptions) => {
         return <>{String(data[props.field])}</>;
     };
 
     const statusBodyTemplate = (data: Demo.Currency) => {
-        console.log('Status Data:', data.status); // Debug log
         return (
             <div className="flex justify-center">
                 <span className={`currency-badge status-${data.status.toLowerCase()}`}>
@@ -43,17 +38,43 @@ const router = useRouter();
     };
 
     const handleEdit = (id: number) => {
-        console.log('Edit:', id);
-        // Add your edit logic here
+        router.push(`/admin/currency/edit/${id}`);
     };
 
     const handleDelete = (id: number) => {
-        console.log('Delete:', id);
-        // Add your delete logic here
+        confirmDialog({
+            message: 'ທ່ານແນ່ໃຈບໍ່ວ່າຕ້ອງການລົບຂໍ້ມູນນີ້?',
+            header: 'ຢືນຢັນການລົບ',
+            icon: 'pi pi-exclamation-triangle',
+            acceptLabel: 'ຢືນຢັນ',
+            rejectLabel: 'ຍົກເລີກ',
+            accept: async () => {
+                try {
+                    const deleted = await CurrencyService.deleteCurrency(String(id));
+                    if (deleted) {
+                        setCurrencies(prev => prev.filter(c => c.id !== id));
+                        toast.current?.show({ 
+                            severity: 'success', 
+                            summary: 'ສຳເລັດ', 
+                            detail: 'ລຶບຂໍ້ມູນສຳເລັດ' 
+                        });
+                    }
+                } catch (error) {
+                    console.error('Delete error:', error);
+                    toast.current?.show({ 
+                        severity: 'error', 
+                        summary: 'ຜິດພາດ', 
+                        detail: 'ເກີດຂໍ້ຜິດພາດໃນການລຶບຂໍ້ມູນ' 
+                    });
+                }
+            }
+        });
     };
 
     return (
         <div className="grid p-fluid">
+            <Toast ref={toast} />
+            <ConfirmDialog />
             <div className="col-12">
                 <div className="card">
                     <div className="flex justify-content-between align-items-center mb-4">
