@@ -137,8 +137,23 @@ declare namespace Demo {
         status: string; // Add the status property
 
     }
-    
-    
+    export interface Supplier {
+        [x: string]: any;
+        id: number;
+        customerCode: string;
+        name: string;
+        contact?: string;
+        email: string;
+        phone: string;
+        status: string;
+        village: string; // Updated field
+        district: string; // Updated field
+        province: string; // Updated field
+        district: string;
+        accountNumber: string;
+        accountName: string;
+        currency: string; // Added currency field
+    }
     export interface BudgetGroup {
         id: string;
         name: string;

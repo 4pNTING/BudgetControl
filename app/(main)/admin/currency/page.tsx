@@ -1,10 +1,9 @@
-'use client';
-
+'use client'
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Button } from 'primereact/button';
 import { DataTable } from 'primereact/datatable';
 import { Column, ColumnBodyOptions } from 'primereact/column';
-import { CurrencyService } from '@/public/demo/CurrencyService';
+import { CurrencyService } from '@/public/demo/service/CurrencyService';
 import { Demo } from '@/types/demo';
 import { LayoutContext } from '@/layout/context/layoutcontext';
 import '@/assets/styles/scss/badges.scss';
@@ -12,6 +11,7 @@ import { ActionButtons } from '@/view/app/components/ActionButtons';
 import { confirmDialog, ConfirmDialog } from 'primereact/confirmdialog';
 import { useRouter } from 'next/navigation';
 import { Toast } from 'primereact/toast';
+import { SplitButton } from 'primereact/splitbutton';
 
 const CurrencyPage = () => {
     const { layoutConfig } = useContext(LayoutContext);
@@ -24,13 +24,13 @@ const CurrencyPage = () => {
     }, []);
 
     const bodyTemplate = (data: Demo.Currency, props: ColumnBodyOptions) => {
-        return <>{String(data[props.field])}</>;
+        return <span className="text-lg">{String(data[props.field])}</span>;
     };
 
     const statusBodyTemplate = (data: Demo.Currency) => {
         return (
             <div className="flex justify-center">
-                <span className={`currency-badge status-${data.status.toLowerCase()}`}>
+                <span className={`currency-badge status-${data.status.toLowerCase()} text-lg`}>
                     {data.status}
                 </span>
             </div>
@@ -43,11 +43,11 @@ const CurrencyPage = () => {
 
     const handleDelete = (id: number) => {
         confirmDialog({
-            message: 'ທ່ານແນ່ໃຈບໍ່ວ່າຕ້ອງການລົບຂໍ້ມູນນີ້?',
-            header: 'ຢືນຢັນການລົບ',
+            message: 'Are you sure you want to delete this record?',
+            header: 'Confirmation',
             icon: 'pi pi-exclamation-triangle',
-            acceptLabel: 'ຢືນຢັນ',
-            rejectLabel: 'ຍົກເລີກ',
+            acceptLabel: 'Yes',
+            rejectLabel: 'No',
             accept: async () => {
                 try {
                     const deleted = await CurrencyService.deleteCurrency(String(id));
@@ -55,21 +55,36 @@ const CurrencyPage = () => {
                         setCurrencies(prev => prev.filter(c => c.id !== id));
                         toast.current?.show({ 
                             severity: 'success', 
-                            summary: 'ສຳເລັດ', 
-                            detail: 'ລຶບຂໍ້ມູນສຳເລັດ' 
+                            summary: 'Success', 
+                            detail: 'Record deleted successfully' 
                         });
                     }
                 } catch (error) {
                     console.error('Delete error:', error);
                     toast.current?.show({ 
                         severity: 'error', 
-                        summary: 'ຜິດພາດ', 
-                        detail: 'ເກີດຂໍ້ຜິດພາດໃນການລຶບຂໍ້ມູນ' 
+                        summary: 'Error', 
+                        detail: 'An error occurred while deleting the record' 
                     });
                 }
             }
         });
     };
+
+    const items = [
+        {
+            label: 'Update',
+            icon: 'pi pi-refresh'
+        },
+        {
+            label: 'Delete',
+            icon: 'pi pi-times'
+        },
+        {
+            label: 'Home',
+            icon: 'pi pi-home'
+        }
+    ];
 
     return (
         <div className="grid p-fluid">
@@ -78,7 +93,7 @@ const CurrencyPage = () => {
             <div className="col-12">
                 <div className="card">
                     <div className="flex justify-content-between align-items-center mb-4">
-                        <h4 className="m-0">ສະກຸນເງິນ</h4>
+                        <h1 className="m-0 text-3xl">ໝວດໝູ່ສະກຸນເງິນ</h1>
                     </div>
 
                     <DataTable 
@@ -98,16 +113,16 @@ const CurrencyPage = () => {
                     >
                         <Column 
                             header="ລຳດັບ" 
-                            body={(data, options) => options.rowIndex + 1} 
-                            headerClassName="bg-blue-600 text-white py-3 font-semibold"
+                            body={(data, options) => <span className="text-lg">{options.rowIndex + 1}</span>} 
+                            headerClassName="bg-primary text-white py-3 font-semibold text-lg"
                             bodyClassName="py-3"
                             style={{ width: '6%', minWidth: '6rem' }} 
                         />
                         <Column 
                             field="code" 
                             body={bodyTemplate} 
-                            header="ລະຫັດ" 
-                            headerClassName="bg-blue-600 text-white py-3 font-semibold"
+                            header="ລະຫັດສະກຸນ" 
+                            headerClassName="bg-primary text-white py-3 font-semibold text-lg"
                             bodyClassName="py-3"
                             sortable 
                             style={{ width: '10%', minWidth: '6rem' }} 
@@ -116,7 +131,7 @@ const CurrencyPage = () => {
                             field="name" 
                             body={bodyTemplate} 
                             header="ຊື່ສະກຸນເງິນ" 
-                            headerClassName="bg-blue-600 text-white py-3 font-semibold"
+                            headerClassName="bg-primary text-white py-3 font-semibold text-lg"
                             bodyClassName="py-3"
                             sortable 
                             style={{ width: '25%', minWidth: '10rem' }} 
@@ -124,8 +139,8 @@ const CurrencyPage = () => {
                         <Column 
                             field="rate" 
                             body={bodyTemplate} 
-                            header="ອັດຕາແລກປ່ຽນ" 
-                            headerClassName="bg-blue-600 text-white py-3 font-semibold"
+                            header="ເລດເງິນ" 
+                            headerClassName="bg-primary text-white py-3 font-semibold text-lg"
                             bodyClassName="py-3"
                             sortable 
                             style={{ width: '10%', minWidth: '8rem' }} 
@@ -134,22 +149,18 @@ const CurrencyPage = () => {
                             field="status" 
                             body={statusBodyTemplate} 
                             header="ສະຖານະ" 
-                            headerClassName="bg-blue-600 text-white py-3 font-semibold"
+                            headerClassName="bg-primary text-white py-3 font-semibold text-lg"
                             bodyClassName="py-3"
                             sortable 
                             style={{ width: '10%', minWidth: '8rem' }} 
                         />
                         <Column 
                             headerStyle={{ width: '7%', minWidth: '6rem' }} 
-                            headerClassName="bg-blue-600 text-white py-3 font-semibold"
-                            header="Action" 
+                            headerClassName="bg-primary text-white py-3 font-semibold text-lg"
+                            header="ການກະທຳ" 
                             bodyClassName="text-center py-3"
                             body={(rowData) => (
-                                <ActionButtons 
-                                    rowData={rowData}
-                                    onEdit={handleEdit}
-                                    onDelete={handleDelete}
-                                />
+                                <SplitButton label="Save" icon="pi pi-check" model={items} color="primary"></SplitButton>
                             )} 
                         />
                     </DataTable>
