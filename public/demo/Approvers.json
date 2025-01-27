@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "John Doe",
+        "email": "john.doe@example.com",
+        "phone": "123-456-7890",
+        "department": "Finance",
+        "role": "Manager"
+    },
+    {
+        "id": 2,
+        "name": "Jane Smith",
+        "email": "jane.smith@example.com",
+        "phone": "098-765-4321",
+        "department": "HR",
+        "role": "Director"
+    },
+    {
+        "id": 3,
+        "name": "Alice Johnson",
+        "email": "alice.johnson@example.com",
+        "phone": "555-123-4567",
+        "department": "IT",
+        "role": "Developer"
+    }
+]

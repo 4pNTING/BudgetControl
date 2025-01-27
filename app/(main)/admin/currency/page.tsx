@@ -7,34 +7,110 @@ import { CurrencyService } from '@/public/demo/service/CurrencyService';
 import { Demo } from '@/types/demo';
 import { LayoutContext } from '@/layout/context/layoutcontext';
 import '@/assets/styles/scss/badges.scss';
-import { ActionButtons } from '@/view/app/components/ActionButtons';
 import { confirmDialog, ConfirmDialog } from 'primereact/confirmdialog';
 import { useRouter } from 'next/navigation';
 import { Toast } from 'primereact/toast';
 import { SplitButton } from 'primereact/splitbutton';
+import { InputText } from 'primereact/inputtext';
+import { FilterMatchMode, FilterOperator } from 'primereact/api';
+import CreateCurrencyDialog from '@/view/app/components/Currency/CurrencyDialog';
+import { LuPlus } from "react-icons/lu";
+import { Menu } from 'primereact/menu';
 
 const CurrencyPage = () => {
     const { layoutConfig } = useContext(LayoutContext);
     const [currencies, setCurrencies] = useState<Demo.Currency[]>([]);
+    const [globalFilter, setGlobalFilter] = useState<string>('');
+    const [filters, setFilters] = useState({});
+    const [displayDialog, setDisplayDialog] = useState(false);
+    const [newCurrency, setNewCurrency] = useState<Demo.Currency>({} as Demo.Currency);
     const router = useRouter();
+    const [totalRecords, setTotalRecords] = useState(0);
+    const [first, setFirst] = useState(0);
+    const [last, setLast] = useState(0);
     const toast = useRef<Toast>(null);
+    const menu = useRef<Menu>(null);
 
-    useEffect(() => {
-        CurrencyService.getCurrencies().then((data) => setCurrencies(data));
-    }, []);
+    const overlayMenuItems = [
+        {
+            label: 'Save',
+            icon: 'pi pi-save'
+        },
+        {
+            label: 'Update',
+            icon: 'pi pi-refresh'
+        },
+      
+        {
+            separator: true
+        },
+        {
+            
+                label: 'Delete',
+                icon: 'pi pi-trash'
+            
+        }
+    ];
 
-    const bodyTemplate = (data: Demo.Currency, props: ColumnBodyOptions) => {
-        return <span className="text-lg">{String(data[props.field])}</span>;
+    const toggleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
+        menu.current?.toggle(event);
     };
 
-    const statusBodyTemplate = (data: Demo.Currency) => {
+    useEffect(() => {
+        const fetchCurrencies = async () => {
+            try {
+                const data = await CurrencyService.getCurrencies();
+                setCurrencies(data);
+                setTotalRecords(data.length);
+            } catch (error) {
+                toast.current?.show({ severity: 'error', summary: 'Error', detail: 'Failed to fetch currencies' });
+            }
+        };
+
+        fetchCurrencies();
+        initFilters();
+    }, []);
+
+    const initFilters = () => {
+        setFilters({
+            global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+            code: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+            name: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+            rate: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] }
+        });
+    };
+
+    const onGlobalFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        let _filters = { ...filters };
+        (_filters['global'] as any).value = value;
+
+        setFilters(_filters);
+        setGlobalFilter(value);
+    };
+
+    const renderHeader = () => {
+        const handleReset = () => {
+            setGlobalFilter('');
+            initFilters();
+        };
+
         return (
-            <div className="flex justify-center">
-                <span className={`currency-badge status-${data.status.toLowerCase()} text-lg`}>
-                    {data.status}
+            <div className="flex justify-content-end items-center">
+                <Button label="Add Currency" icon={<LuPlus />} onClick={() => setDisplayDialog(true)} style={{ width: '200px', marginRight: '1rem' }} />
+                <span className="p-input-icon-left p-input-icon-right">
+                    <i className="pi pi-search" />
+                    <InputText value={globalFilter || ''} onChange={onGlobalFilterChange} placeholder="Search..." style={{ width: '300px' }} />
+                    {globalFilter && (
+                        <i className="pi pi-times" onClick={handleReset} style={{ cursor: 'pointer' }} />
+                    )}
                 </span>
             </div>
         );
+    };
+
+    const bodyTemplate = (data: Demo.Currency, props: ColumnBodyOptions) => {
+        return <span className="text-sm">{String(data[props.field])}</span>;
     };
 
     const handleEdit = (id: number) => {
@@ -50,15 +126,13 @@ const CurrencyPage = () => {
             rejectLabel: 'No',
             accept: async () => {
                 try {
-                    const deleted = await CurrencyService.deleteCurrency(String(id));
-                    if (deleted) {
-                        setCurrencies(prev => prev.filter(c => c.id !== id));
-                        toast.current?.show({ 
-                            severity: 'success', 
-                            summary: 'Success', 
-                            detail: 'Record deleted successfully' 
-                        });
-                    }
+                    await CurrencyService.deleteCurrency(id);
+                    setCurrencies(prev => prev.filter(c => c.id !== id));
+                    toast.current?.show({ 
+                        severity: 'success', 
+                        summary: 'Success', 
+                        detail: 'Record deleted successfully' 
+                    });
                 } catch (error) {
                     console.error('Delete error:', error);
                     toast.current?.show({ 
@@ -86,16 +160,46 @@ const CurrencyPage = () => {
         }
     ];
 
+    const handleSave = async () => {
+        try {
+            const response = await fetch('/api/saveCurrency', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newCurrency),
+            });
+
+            if (!response.ok) {
+                throw new Error('Error saving data');
+            }
+
+            const result = await response.json();
+            setCurrencies([...currencies, newCurrency]);
+            setDisplayDialog(false);
+            toast.current?.show({ severity: 'success', summary: 'Success', detail: result.message });
+        } catch (error) {
+            console.error('Error:', error);
+            toast.current?.show({ severity: 'error', summary: 'Error', detail: 'An error occurred while saving the data.' });
+        }
+    };
+
+    const header = renderHeader();
+
     return (
         <div className="grid p-fluid">
             <Toast ref={toast} />
             <ConfirmDialog />
+            <CreateCurrencyDialog 
+                visible={displayDialog} 
+                onHide={() => setDisplayDialog(false)} 
+                onSave={handleSave} 
+                currency={newCurrency} 
+                setCurrency={setNewCurrency} 
+            />
             <div className="col-12">
                 <div className="card">
-                    <div className="flex justify-content-between align-items-center mb-4">
-                        <h1 className="m-0 text-3xl">ໝວດໝູ່ສະກຸນເງິນ</h1>
-                    </div>
-
+                    <h1> HHHHHHHHHH</h1>
                     <DataTable 
                         value={currencies} 
                         rows={10} 
@@ -106,6 +210,9 @@ const CurrencyPage = () => {
                         stripedRows
                         showGridlines
                         rowHover
+                        paginatorLeft={<span>Showing {first + 1} to {last} of {totalRecords}</span>}
+                        filters={filters}
+                        header={header}
                         currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
                         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                         rowsPerPageOptions={[10, 25, 50]}
@@ -113,8 +220,8 @@ const CurrencyPage = () => {
                     >
                         <Column 
                             header="ລຳດັບ" 
-                            body={(data, options) => <span className="text-lg">{options.rowIndex + 1}</span>} 
-                            headerClassName="bg-primary text-white py-3 font-semibold text-lg"
+                            body={(data, options) => <span className="text-sm">{options.rowIndex + 1}</span>} 
+                            headerClassName="bg-primary text-white py-3 font-semibold text-sm"
                             bodyClassName="py-3"
                             style={{ width: '6%', minWidth: '6rem' }} 
                         />
@@ -122,7 +229,7 @@ const CurrencyPage = () => {
                             field="code" 
                             body={bodyTemplate} 
                             header="ລະຫັດສະກຸນ" 
-                            headerClassName="bg-primary text-white py-3 font-semibold text-lg"
+                            headerClassName="bg-primary text-white py-3 font-semibold text-sm"
                             bodyClassName="py-3"
                             sortable 
                             style={{ width: '10%', minWidth: '6rem' }} 
@@ -131,7 +238,7 @@ const CurrencyPage = () => {
                             field="name" 
                             body={bodyTemplate} 
                             header="ຊື່ສະກຸນເງິນ" 
-                            headerClassName="bg-primary text-white py-3 font-semibold text-lg"
+                            headerClassName="bg-primary text-white py-3 font-semibold text-sm"
                             bodyClassName="py-3"
                             sortable 
                             style={{ width: '25%', minWidth: '10rem' }} 
@@ -140,27 +247,21 @@ const CurrencyPage = () => {
                             field="rate" 
                             body={bodyTemplate} 
                             header="ເລດເງິນ" 
-                            headerClassName="bg-primary text-white py-3 font-semibold text-lg"
+                            headerClassName="bg-primary text-white py-3 font-semibold text-sm"
                             bodyClassName="py-3"
                             sortable 
-                            style={{ width: '10%', minWidth: '8rem' }} 
+                            style={{ width: '10%', minWidth: '6rem' }} 
                         />
                         <Column 
-                            field="status" 
-                            body={statusBodyTemplate} 
-                            header="ສະຖານະ" 
-                            headerClassName="bg-primary text-white py-3 font-semibold text-lg"
-                            bodyClassName="py-3"
-                            sortable 
-                            style={{ width: '10%', minWidth: '8rem' }} 
-                        />
-                        <Column 
-                            headerStyle={{ width: '7%', minWidth: '6rem' }} 
-                            headerClassName="bg-primary text-white py-3 font-semibold text-lg"
-                            header="ການກະທຳ" 
+                            headerStyle={{ width: '5%', minWidth: '6rem' }} 
+                            headerClassName="bg-primary text-white py-3 font-semibold text-sm"
+                            header="Actions" 
                             bodyClassName="text-center py-3"
                             body={(rowData) => (
-                                <SplitButton label="Save" icon="pi pi-check" model={items} color="primary"></SplitButton>
+                                <>
+                                    <Menu ref={menu} model={overlayMenuItems} popup />
+                                    <Button type="button" label="Options" icon="pi pi-angle-down" onClick={toggleMenu} style={{ width: '200px' }} />
+                                </>
                             )} 
                         />
                     </DataTable>

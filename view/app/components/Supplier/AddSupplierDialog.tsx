@@ -8,7 +8,7 @@ import { Column } from 'primereact/column';
 import { Dropdown } from 'primereact/dropdown';
 import { Toast } from 'primereact/toast';
 import { classNames } from 'primereact/utils';
-
+import { LuSave } from "react-icons/lu";
 interface AddSupplierDialogProps {
     visible: boolean;
     onHide: () => void;
@@ -42,7 +42,9 @@ const AddSupplierDialog: React.FC<AddSupplierDialogProps> = ({ visible, onHide, 
 
     const dialogFooter = (
         <div>
-            <Button label="ບັນທຶກ" icon="pi pi-check" onClick={handleSave} />
+          <Button icon={<LuSave />} label="ບັນທຶກ" className="mr-2 p-button-tex" onClick={handleSave} />
+
+
             <Button label="ຍົກເລິກ" icon="pi pi-times" onClick={onHide} className="p-button-text p-button-secondary" />
         </div>
     );

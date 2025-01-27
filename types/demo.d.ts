@@ -136,7 +136,19 @@ declare namespace Demo {
 
         status: string; // Add the status property
 
+
+        
     }
+
+        export interface Approver {
+            id: number;
+            name: string;
+            email: string;
+            phone: string;
+            department: string;
+            role: string;
+        }
+  
     export interface Supplier {
         [x: string]: any;
         id: number;

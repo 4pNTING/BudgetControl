@@ -15,7 +15,7 @@ import { SplitButton } from 'primereact/splitbutton';
 import { InputText } from 'primereact/inputtext';
 import { FilterMatchMode, FilterOperator } from 'primereact/api';
 import AddSupplierDialog from '@/view/app/components/Supplier/AddSupplierDialog';
-
+import { LuSave } from "react-icons/lu";
 const SupplierPage = () => {
     const { layoutConfig } = useContext(LayoutContext);
     const [suppliers, setSuppliers] = useState<Demo.Supplier[]>([]);
