@@ -7,7 +7,7 @@ import { Chart } from 'primereact/chart';
 import { DataTable } from 'primereact/datatable';
 import { Column, ColumnBodyOptions } from 'primereact/column';
 import { Menu } from 'primereact/menu';
-import { ProductService } from '../../public/demo/ProductService';
+import { ProductService } from '../../public/demo/service/ProductService';
 import { Demo } from '@/types/demo';
 import { LayoutContext } from '../../layout/context/layoutcontext';
 
