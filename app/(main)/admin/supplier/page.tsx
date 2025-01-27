@@ -57,6 +57,7 @@ const SupplierPage = () => {
             setGlobalFilter('');
             initFilters();
         };
+        
 
         return (
             <div className="flex justify-content-end items-center">
@@ -171,7 +172,7 @@ const SupplierPage = () => {
                         rows={10} 
                         paginator 
                         responsiveLayout="scroll" 
-                        className="p-datatable-sm shadow-lg rounded-xl overflow-hidden"
+                        className="p-datatable-sm shadow-lg rounded-xl overflow-hidden "
                         tableStyle={{ minWidth: '50rem' }}
                         stripedRows
                         showGridlines
@@ -187,7 +188,7 @@ const SupplierPage = () => {
                         <Column 
                             header="ລຳດັບ" 
                             body={(data, options) => <span>{options.rowIndex + 1}</span>} 
-                            headerClassName="bg-white text-black py-3 font-semibold"
+                           headerClassName="bg-gray-300 text-gray-700 py-3 font-semibold"
                             bodyClassName="py-3"
                             style={{ width: '5%', minWidth: '3rem' }} 
                         />
@@ -195,7 +196,7 @@ const SupplierPage = () => {
                             field="name" 
                             body={bodyTemplate} 
                             header="ຊື່ຜູ້ສະໜອງ" 
-                            headerClassName="bg-white text-black py-3 font-semibold"
+                           headerClassName="bg-gray-300 text-gray-700 py-3 font-semibold"
                             bodyClassName="py-3"
                             sortable 
                             
@@ -205,7 +206,7 @@ const SupplierPage = () => {
                             field="type" 
                             body={bodyTemplate} 
                             header="ປະເພດເຄື່ອງຂາຍ" 
-                            headerClassName="bg-white text-black py-3 font-semibold"
+                           headerClassName="bg-gray-300 text-gray-700 py-3 font-semibold"
                             bodyClassName="py-3"
                             sortable 
                             
@@ -215,7 +216,7 @@ const SupplierPage = () => {
                             field="providedTo" 
                             body={bodyTemplate} 
                             header="ສະໜອງໃຫ້" 
-                            headerClassName="bg-white text-black py-3 font-semibold"
+                           headerClassName="bg-gray-300 text-gray-700 py-3 font-semibold"
                             bodyClassName="py-3"
                             sortable 
                             
@@ -225,7 +226,7 @@ const SupplierPage = () => {
                             field="address" 
                             body={bodyTemplate} 
                             header="ທີ່ຢູ່" 
-                            headerClassName="bg-white text-black py-3 font-semibold"
+                           headerClassName="bg-gray-300 text-gray-700 py-3 font-semibold"
                             bodyClassName="py-3"
                             sortable 
                             
@@ -235,7 +236,7 @@ const SupplierPage = () => {
                             field="village" 
                             body={bodyTemplate} 
                             header="ບ້ານ" 
-                            headerClassName="bg-white text-black py-3 font-semibold"
+                           headerClassName="bg-gray-300 text-gray-700 py-3 font-semibold"
                             bodyClassName="py-3"
                             sortable 
                             
@@ -245,7 +246,7 @@ const SupplierPage = () => {
                             field="district" 
                             body={bodyTemplate} 
                             header="ເມືອງ" 
-                            headerClassName="bg-white text-black py-3 font-semibold"
+                           headerClassName="bg-gray-300 text-gray-700 py-3 font-semibold"
                             bodyClassName="py-3"
                             sortable 
                             
@@ -255,7 +256,7 @@ const SupplierPage = () => {
                             field="province" 
                             body={bodyTemplate} 
                             header="ແຂວງ" 
-                            headerClassName="bg-white text-black py-3 font-semibold"
+                           headerClassName="bg-gray-300 text-gray-700 py-3 font-semibold"
                             bodyClassName="py-3"
                             sortable 
                             
@@ -265,7 +266,7 @@ const SupplierPage = () => {
                             field="phone" 
                             body={bodyTemplate} 
                             header="ເບີໂທ" 
-                            headerClassName="bg-white text-black py-3 font-semibold"
+                           headerClassName="bg-gray-300 text-gray-700 py-3 font-semibold"
                             bodyClassName="py-3"
                             sortable 
                             
@@ -275,7 +276,7 @@ const SupplierPage = () => {
                             field="note" 
                             body={bodyTemplate} 
                             header="ໝາຍເຫດ" 
-                            headerClassName="bg-white text-black py-3 font-semibold"
+                           headerClassName="bg-gray-300 text-gray-700 py-3 font-semibold"
                             bodyClassName="py-3"
                             sortable 
                             
@@ -283,7 +284,7 @@ const SupplierPage = () => {
                         />
                         <Column 
                             headerStyle={{ width: '15%', minWidth: '6rem' }} 
-                            headerClassName="bg-white text-black py-3 font-semibold"
+                           headerClassName="bg-gray-300 text-gray-700 py-3 font-semibold"
                             header="ການຈັດການ" 
                             bodyClassName="text-center py-3"
                             body={(rowData) => (

@@ -145,6 +145,9 @@ const UserPage = () => {
                             bodyClassName="py-3"
                             style={{ width: '2%', minWidth: '6rem' }} 
                         />
+                        <div>
+                            
+                        </div>
                         
                         <Column 
                             field="name" 
