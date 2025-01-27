@@ -91,7 +91,7 @@ const AddApproverDialog = ({ visible, onHide, approver, setApprover, onSave }) =
                     {submitted && !approver.role && <small className="p-error">ກະລຸນາປ້ອນບົດບາດ</small>}
                 </div>
                 <div className="p-field" style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '20px' }}>
-                    <Button label="ບັນທຶກ" icon={<LuSave />} onClick={handleSave} className="p-button-sm" style={{ width: '100px' }} />
+                    <Button label="ບັນທຶກ" icon="pi pi-download"  onClick={handleSave} className="p-button-sm" style={{ width: '100px' }} />
                     <Button label="ຍົກເລິກ" icon="pi pi-times" onClick={onHide} className="p-button-text p-button-secondary p-button-sm" style={{ width: '100px' }} />
                 </div>
             </div>

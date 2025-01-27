@@ -5,6 +5,7 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { classNames } from 'primereact/utils';
 import { LuSave } from "react-icons/lu";
+import { FaMoneyBillWave } from "react-icons/fa"; // Importing the icon for the header
 
 const CurrencyDialog = ({ visible, onHide, currency, setCurrency, onSave }) => {
     const [submitted, setSubmitted] = useState(false);
@@ -33,10 +34,10 @@ const CurrencyDialog = ({ visible, onHide, currency, setCurrency, onSave }) => {
     };
 
     return (
-        <Dialog header="Create Currency" visible={visible} style={{ width: '50vw' }} onHide={onHide}>
+        <Dialog header={<><FaMoneyBillWave style={{ marginRight: '10px' }} />ສ້າງສະກຸນເງິນ</>} visible={visible} style={{ width: '40vw', height: 'auto' }} onHide={onHide}>
             <div className="p-fluid">
                 <div className="p-field">
-                    <label htmlFor="code">Currency Code</label>
+                    <label htmlFor="code">ລະຫັດສະກຸນເງິນ</label>
                     <InputText 
                         id="code" 
                         name="code" 
@@ -44,10 +45,10 @@ const CurrencyDialog = ({ visible, onHide, currency, setCurrency, onSave }) => {
                         onChange={handleInputChange} 
                         className={classNames({ 'p-invalid': submitted && !currency.code })}
                     />
-                    {submitted && !currency.code && <small className="p-error">Please enter the currency code</small>}
+                    {submitted && !currency.code && <small className="p-error">ກະລຸນາປ້ອນລະຫັດສະກຸນເງິນ</small>}
                 </div>
                 <div className="p-field">
-                    <label htmlFor="name">Currency Name</label>
+                    <label htmlFor="name">ຊື່ສະກຸນເງິນ</label>
                     <InputText 
                         id="name" 
                         name="name" 
@@ -55,10 +56,10 @@ const CurrencyDialog = ({ visible, onHide, currency, setCurrency, onSave }) => {
                         onChange={handleInputChange} 
                         className={classNames({ 'p-invalid': submitted && !currency.name })}
                     />
-                    {submitted && !currency.name && <small className="p-error">Please enter the currency name</small>}
+                    {submitted && !currency.name && <small className="p-error">ກະລຸນາປ້ອນຊື່ສະກຸນເງິນ</small>}
                 </div>
                 <div className="p-field">
-                    <label htmlFor="rate">Exchange Rate</label>
+                    <label htmlFor="rate">ອັດຕາແລກປ່ຽນ</label>
                     <InputText 
                         id="rate" 
                         name="rate" 
@@ -66,11 +67,11 @@ const CurrencyDialog = ({ visible, onHide, currency, setCurrency, onSave }) => {
                         onChange={handleInputChange} 
                         className={classNames({ 'p-invalid': submitted && !currency.rate })}
                     />
-                    {submitted && !currency.rate && <small className="p-error">Please enter the exchange rate</small>}
+                    {submitted && !currency.rate && <small className="p-error">ກະລຸນາປ້ອນອັດຕາແລກປ່ຽນ</small>}
                 </div>
                 <div className="p-field" style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '20px' }}>
-                    <Button label="Save" icon={<LuSave />} onClick={handleSave} className="p-button-sm" style={{ width: '100px' }} />
-                    <Button label="Cancel" icon="pi pi-times" onClick={onHide} className="p-button-text p-button-secondary p-button-sm" style={{ width: '100px' }} />
+                    <Button label="ບັນທຶກ" icon={<LuSave />} onClick={handleSave} className="p-button-sm" style={{ width: '100px' }} />
+                    <Button label="ຍົກເລີກ" icon="pi pi-times" onClick={onHide} className="p-button-text p-button-secondary p-button-sm" style={{ width: '100px' }} />
                 </div>
             </div>
         </Dialog>

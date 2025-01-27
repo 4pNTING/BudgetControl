@@ -124,9 +124,9 @@ const ApproverPage = () => {
         return (
             <div className="flex justify-content-end items-center">
                 <Button label="ເພິ່ມຜູ້ອະນຸມັດ" icon={<LuPlus />} onClick={() => setDisplayDialog(true)} style={{ width: '200px', marginRight: '1rem' }} />
-                <span className="p-input-icon-left p-input-icon-right">
-                    <i className="pi pi-search" />
-                    <InputText value={globalFilter || ''} onChange={onGlobalFilterChange} placeholder="Search..." style={{ width: '300px' }} />
+                <span className="">
+                   
+                    <InputText value={globalFilter || ''} onChange={onGlobalFilterChange} placeholder="ກະລຸນາປ້ອນຄຳຄົ້ນຫາ..." style={{ width: '300px' }} />
                     {globalFilter && (
                         <i className="pi pi-times" onClick={handleReset} style={{ cursor: 'pointer' }} />
                     )}
@@ -136,7 +136,7 @@ const ApproverPage = () => {
     };
 
     const bodyTemplate = (data: Demo.Approver, props: ColumnBodyOptions) => {
-        return <span className="text-sm">{String(data[props.field])}</span>;
+        return <span>{String(data[props.field])}</span>;
     };
 
     const handleEdit = (id: number) => {
@@ -174,16 +174,20 @@ const ApproverPage = () => {
     const items = [
         {
             label: 'Update',
-            icon: 'pi pi-refresh'
-        },
-        {
-            label: 'Delete',
-            icon: 'pi pi-times'
-        },
-        {
+            icon: 'pi pi-print'
+        }, {
             label: 'Home',
             icon: 'pi pi-home'
-        }
+        },
+        
+        {
+            separator: true
+        },
+       
+        {
+            label: 'Delete',
+            icon: 'pi pi-trash'
+        },
     ];
 
     const toggleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -233,27 +237,26 @@ const ApproverPage = () => {
                         <h1 className="m-0 text-3xl">ຜູ້ອະນຸມັດ</h1>
                     </div>
                     <DataTable 
-                        value={approvers} 
-                        rows={10} 
-                        paginator 
-                        responsiveLayout="scroll" 
-                        className="p-datatable-sm shadow-lg rounded-xl overflow-hidden"
-                        tableStyle={{ minWidth: '50rem' }}
-                        stripedRows
-                        showGridlines
-                        rowHover
-                        paginatorLeft={<span>Showing {first + 1} to {last} of {totalRecords}</span>}
-                        filters={filters}
-                        header={header}
-                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
-                        paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                        rowsPerPageOptions={[10, 25, 50]}
-                        paginatorClassName="p-3 border-t bg-gray-50"
+                     value={approvers} 
+                     rows={10} 
+                     paginator 
+                     responsiveLayout="scroll" 
+                     className="p-datatable-sm shadow-lg rounded-xl overflow-hidden"
+                     tableStyle={{ minWidth: '50rem' }}
+                     stripedRows
+                     showGridlines
+                     rowHover
+                     filters={filters}
+                     header={header}
+                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
+                     paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+                     rowsPerPageOptions={[10, 25, 50]}
+                     paginatorClassName="p-3 border-t bg-gray-50"
                     >
                         <Column 
                             header="ລຳດັບ" 
-                            body={(data, options) => <span className="text-sm">{options.rowIndex + 1}</span>} 
-                            headerClassName="bg-primary text-white py-3 font-semibold text-sm"
+                            body={(data, options) => <span>{options.rowIndex + 1}</span>} 
+                            headerClassName="bg-white text-black py-3 font-semibold"
                             bodyClassName="py-3"
                             style={{ width: '6%', minWidth: '6rem' }} 
                         />
@@ -261,59 +264,59 @@ const ApproverPage = () => {
                             field="name" 
                             body={bodyTemplate} 
                             header="ຊື່" 
-                            headerClassName="bg-primary text-white py-3 font-semibold text-sm"
+                            headerClassName="bg-white text-black py-3 font-semibold"
                             bodyClassName="py-3"
                             sortable 
-                            filter
+                          
                             style={{ width: '18%', minWidth: '10rem' }} 
                         />
                         <Column 
                             field="email" 
                             body={bodyTemplate} 
                             header="ອີເມວ" 
-                            headerClassName="bg-primary text-white py-3 font-semibold text-sm"
+                            headerClassName="bg-white text-black py-3 font-semibold"
                             bodyClassName="py-3"
                             sortable 
-                            filter
+                          
                             style={{ width: '18%', minWidth: '10rem' }} 
                         />
                         <Column 
                             field="phone" 
                             body={bodyTemplate} 
                             header="ເບີໂທ" 
-                            headerClassName="bg-primary text-white py-3 font-semibold text-sm"
+                            headerClassName="bg-white text-black py-3 font-semibold"
                             bodyClassName="py-3"
                             sortable 
-                            filter
+                         
                             style={{ width: '12%', minWidth: '8rem' }} 
                         />
                         <Column 
                             field="department" 
                             body={bodyTemplate} 
                             header="ພະແນກ" 
-                            headerClassName="bg-primary text-white py-3 font-semibold text-sm"
+                            headerClassName="bg-white text-black py-3 font-semibold"
                             bodyClassName="py-3"
                             sortable 
-                            filter
+                           
                             style={{ width: '12%', minWidth: '8rem' }} 
                         />
                         <Column 
                             field="role" 
                             body={bodyTemplate} 
                             header="ບົດບາດ" 
-                            headerClassName="bg-primary text-white py-3 font-semibold text-sm"
+                            headerClassName="bg-white text-black py-3 font-semibold"
                             bodyClassName="py-3"
                             sortable 
-                            filter
+                          
                             style={{ width: '12%', minWidth: '8rem' }} 
                         />
                         <Column 
                             headerStyle={{ width: '10%', minWidth: '6rem' }} 
-                            headerClassName="bg-primary text-white py-3 font-semibold text-sm"
+                            headerClassName="bg-white text-black py-3 font-semibold"
                             header="ການກະທຳ" 
                             bodyClassName="text-center py-3"
                             body={(rowData) => (
-                                <SplitButton label="Actions" icon="pi pi-check" model={items} color="primary"></SplitButton>
+                                <SplitButton label="ລາຍລະອຽດ" icon="pi pi-check" model={items} className="p-button-sm" style={{ width: '150px' }} />
                             )} 
                         />
                     </DataTable>

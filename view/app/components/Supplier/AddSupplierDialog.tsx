@@ -78,7 +78,7 @@ const AddSupplierDialog: React.FC<AddSupplierDialogProps> = ({ visible, onHide, 
             <Dialog header="ເພີ່ມຜູ້ສະໜອງໃໝ່" visible={visible} style={{ width: '70vw' }} footer={dialogFooter} onHide={onHide}>
                 <div className="p-fluid grid">
                     <div className="field col-12 md:col-6">
-                        <label htmlFor="customerCode">ລະຫັດລູກຄ້າ</label>
+                        <label htmlFor="customerCode"></label>
                         <InputText id="customerCode" value={supplier.customerCode} onChange={(e) => setSupplier({ ...supplier, customerCode: e.target.value })} className={classNames({ 'p-invalid': submitted && !supplier.customerCode })} />
                         {submitted && !supplier.customerCode && <small className="p-error">ລະຫັດລູກຄ້າ ຈຳເປັນຕ້ອງໃສ່.</small>}
                     </div>
@@ -111,7 +111,7 @@ const AddSupplierDialog: React.FC<AddSupplierDialogProps> = ({ visible, onHide, 
                 <div className="p-fluid">
                     <h3>ບັນຊີ</h3>
                     <DataTable value={accounts} rows={5} className="p-datatable-sm">
-                        <Column field="index" header="ລຳດັບ" body={(rowData, column) => column.rowIndex + 1} style={{ width: '10%', minWidth: '6rem' }} />
+                        <Column field="index" header="ລຳດັບ" body={(rowData, column) => column.rowIndex + 1} style={{ width: '5%', minWidth: '6rem' }} />
                         <Column field="accountName" header="ຊື່ບັນຊີ" body={(rowData, column) => (
                             <InputText
                                 type="text"

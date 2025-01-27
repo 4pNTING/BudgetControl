@@ -40,15 +40,12 @@ const CurrencyPage = () => {
             label: 'Update',
             icon: 'pi pi-refresh'
         },
-      
         {
             separator: true
         },
         {
-            
-                label: 'Delete',
-                icon: 'pi pi-trash'
-            
+            label: 'Delete',
+            icon: 'pi pi-trash'
         }
     ];
 
@@ -97,10 +94,10 @@ const CurrencyPage = () => {
 
         return (
             <div className="flex justify-content-end items-center">
-                <Button label="Add Currency" icon={<LuPlus />} onClick={() => setDisplayDialog(true)} style={{ width: '200px', marginRight: '1rem' }} />
-                <span className="p-input-icon-left p-input-icon-right">
-                    <i className="pi pi-search" />
-                    <InputText value={globalFilter || ''} onChange={onGlobalFilterChange} placeholder="Search..." style={{ width: '300px' }} />
+                <Button label="ເພິ່ມສະກຸນເງິນໃໝ່" icon={<LuPlus />} onClick={() => setDisplayDialog(true)} style={{ width: '150px', marginRight: '1rem' }} />
+                <span className="">
+                    
+                    <InputText value={globalFilter || ''} onChange={onGlobalFilterChange} placeholder="ກະລຸນາປ້ອນຄຳຄົ້ນຫາ..." style={{ width: '300px' }} />
                     {globalFilter && (
                         <i className="pi pi-times" onClick={handleReset} style={{ cursor: 'pointer' }} />
                     )}
@@ -110,7 +107,7 @@ const CurrencyPage = () => {
     };
 
     const bodyTemplate = (data: Demo.Currency, props: ColumnBodyOptions) => {
-        return <span className="text-sm">{String(data[props.field])}</span>;
+        return <span>{String(data[props.field])}</span>;
     };
 
     const handleEdit = (id: number) => {
@@ -126,7 +123,7 @@ const CurrencyPage = () => {
             rejectLabel: 'No',
             accept: async () => {
                 try {
-                    await CurrencyService.deleteCurrency(id);
+                    await CurrencyService.deleteCurrency(id.toString());
                     setCurrencies(prev => prev.filter(c => c.id !== id));
                     toast.current?.show({ 
                         severity: 'success', 
@@ -199,7 +196,7 @@ const CurrencyPage = () => {
             />
             <div className="col-12">
                 <div className="card">
-                    <h1> HHHHHHHHHH</h1>
+                    <h1 className="text-4xl font-bold my-4">ລາຍງານສະກຸນເງິນ</h1>
                     <DataTable 
                         value={currencies} 
                         rows={10} 
@@ -210,58 +207,54 @@ const CurrencyPage = () => {
                         stripedRows
                         showGridlines
                         rowHover
-                        paginatorLeft={<span>Showing {first + 1} to {last} of {totalRecords}</span>}
                         filters={filters}
                         header={header}
-                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
+                        currentPageReportTemplate="ສະແດງ {first} ຫາ {last} of {totalRecords}"
                         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                         rowsPerPageOptions={[10, 25, 50]}
                         paginatorClassName="p-3 border-t bg-gray-50"
                     >
                         <Column 
                             header="ລຳດັບ" 
-                            body={(data, options) => <span className="text-sm">{options.rowIndex + 1}</span>} 
-                            headerClassName="bg-primary text-white py-3 font-semibold text-sm"
+                            body={(data, options) => <span>{options.rowIndex + 1}</span>} 
+                            headerClassName="bg-white text-black py-3 font-semibold"
                             bodyClassName="py-3"
-                            style={{ width: '6%', minWidth: '6rem' }} 
+                            style={{ width: '3%' }} 
                         />
                         <Column 
                             field="code" 
                             body={bodyTemplate} 
                             header="ລະຫັດສະກຸນ" 
-                            headerClassName="bg-primary text-white py-3 font-semibold text-sm"
+                            headerClassName="bg-white text-black py-3 font-semibold"
                             bodyClassName="py-3"
                             sortable 
-                            style={{ width: '10%', minWidth: '6rem' }} 
+                            style={{ width: '10%' }} 
                         />
                         <Column 
                             field="name" 
                             body={bodyTemplate} 
                             header="ຊື່ສະກຸນເງິນ" 
-                            headerClassName="bg-primary text-white py-3 font-semibold text-sm"
+                            headerClassName="bg-white text-black py-3 font-semibold"
                             bodyClassName="py-3"
                             sortable 
-                            style={{ width: '25%', minWidth: '10rem' }} 
+                            style={{ width: '15%' }} 
                         />
                         <Column 
                             field="rate" 
                             body={bodyTemplate} 
                             header="ເລດເງິນ" 
-                            headerClassName="bg-primary text-white py-3 font-semibold text-sm"
+                            headerClassName="bg-white text-black py-3 font-semibold"
                             bodyClassName="py-3"
                             sortable 
-                            style={{ width: '10%', minWidth: '6rem' }} 
+                            style={{ width: '10%' }} 
                         />
                         <Column 
-                            headerStyle={{ width: '5%', minWidth: '6rem' }} 
-                            headerClassName="bg-primary text-white py-3 font-semibold text-sm"
-                            header="Actions" 
+                            headerStyle={{ width: '1%' }} 
+                            headerClassName="bg-white text-black py-3 font-semibold"
+                            header="ການຈັດການ" 
                             bodyClassName="text-center py-3"
                             body={(rowData) => (
-                                <>
-                                    <Menu ref={menu} model={overlayMenuItems} popup />
-                                    <Button type="button" label="Options" icon="pi pi-angle-down" onClick={toggleMenu} style={{ width: '200px' }} />
-                                </>
+                                <SplitButton label="ລາຍລະອຽດ" icon="pi pi-check" model={items} className="p-button-sm" style={{ width: '140px' }} />
                             )} 
                         />
                     </DataTable>
