@@ -161,25 +161,25 @@ const AddSupplierDialog: React.FC<AddSupplierDialogProps> = ({ visible, onHide, 
                 <div className="p-fluid grid mt-4">
                 <div className="field col-6 md:col-4">
     <label htmlFor="name" style={{ fontSize: '1.2em' }}>ຊື່ຜູ້ສະໜອງ</label>
-    <div className="p-inputgroup flex-1">
-        <span className="p-inputgroup-addon">
-            <FaUserTie className="text-gray-600" />
-        </span>
-        <InputText 
-            id="name" 
-            value={supplier.name} 
-            onChange={(e) => setSupplier({ ...supplier, name: e.target.value })} 
-            className={classNames({ 'p-invalid': submitted && !supplier.name })}
-            placeholder="ກະລຸນາປ້ອນຊື່ຜູ້ສະໜອງ"
-        />
-    </div>
+   <div className="p-inputgroup flex-1">
+    <span className="p-inputgroup-addon">
+        <FaUserTie className="text-blue-500" />
+    </span>
+    <InputText 
+        id="name" 
+        value={supplier.name} 
+        onChange={(e) => setSupplier({ ...supplier, name: e.target.value })} 
+        className={classNames({ 'p-invalid': submitted && !supplier.name })}
+        placeholder="ກະລຸນາປ້ອນຊື່ຜູ້ສະໜອງ"
+    />
+</div>
   
 </div>
 <div className="field col-12 md:col-4">
     <label htmlFor="type" style={{ fontSize: '1.2em' }}>ປະເພດເຄື່ອງຂາຍ</label>
     <div className="p-inputgroup flex-1">
         <span className="p-inputgroup-addon">
-            <FaBoxes className="text-gray-600" />
+            <FaBoxes className="text-blue-500" />
         </span>
         <InputText 
             id="type" 
@@ -189,13 +189,12 @@ const AddSupplierDialog: React.FC<AddSupplierDialogProps> = ({ visible, onHide, 
             placeholder="ກະລຸນາປ້ອນປະເພດເຄື່ອງຂາຍ"
         />
     </div>
-  
 </div>
 <div className="field col-12 md:col-4">
     <label htmlFor="providedTo" style={{ fontSize: '1.2em' }}>ສະໜອງໃຫ້</label>
     <div className="p-inputgroup flex-1">
         <span className="p-inputgroup-addon">
-            <FaHandshake className="text-gray-600" />
+            <FaHandshake className="text-green-500" />
         </span>
         <InputText 
             id="providedTo" 
@@ -205,13 +204,12 @@ const AddSupplierDialog: React.FC<AddSupplierDialogProps> = ({ visible, onHide, 
             placeholder="ກະລຸນາປ້ອນຜູ້ທີ່ຈະສະໜອງໃຫ້"
         />
     </div>
-  
 </div>
 <div className="field col-12 md:col-4">
     <label htmlFor="address" style={{ fontSize: '1.2em' }}>ທີ່ຢູ່</label>
     <div className="p-inputgroup flex-1">
         <span className="p-inputgroup-addon">
-            <FaMapMarkedAlt className="text-gray-600" />
+            <FaMapMarkedAlt className="text-blue-500" />
         </span>
         <InputText 
             id="address" 
@@ -221,13 +219,12 @@ const AddSupplierDialog: React.FC<AddSupplierDialogProps> = ({ visible, onHide, 
             placeholder="ກະລຸນາປ້ອນທີ່ຢູ່"
         />
     </div>
-   
 </div>
 <div className="field col-12 md:col-4">
     <label htmlFor="village" style={{ fontSize: '1.2em' }}>ບ້ານ</label>
     <div className="p-inputgroup flex-1">
         <span className="p-inputgroup-addon">
-            <FaHome className="text-gray-600" />
+            <FaHome className="text-blue-500" />
         </span>
         <InputText 
             id="village" 
@@ -237,13 +234,12 @@ const AddSupplierDialog: React.FC<AddSupplierDialogProps> = ({ visible, onHide, 
             placeholder="ກະລຸນາປ້ອນບ້ານ"
         />
     </div>
-   
 </div>
 <div className="field col-12 md:col-4">
     <label htmlFor="district" style={{ fontSize: '1.2em' }}>ເມືອງ</label>
     <div className="p-inputgroup flex-1">
         <span className="p-inputgroup-addon">
-            <FaCity className="text-gray-600" />
+            <FaCity className="text-blue-500" />
         </span>
         <InputText 
             id="district" 
@@ -258,7 +254,7 @@ const AddSupplierDialog: React.FC<AddSupplierDialogProps> = ({ visible, onHide, 
     <label htmlFor="province" style={{ fontSize: '1.2em' }}>ແຂວງ</label>
     <div className="p-inputgroup flex-1">
         <span className="p-inputgroup-addon">
-            <FaGlobeAsia className="text-gray-600" />
+            <FaGlobeAsia className="text-blue-500" />
         </span>
         <InputText 
             id="province" 
@@ -273,7 +269,7 @@ const AddSupplierDialog: React.FC<AddSupplierDialogProps> = ({ visible, onHide, 
     <label htmlFor="phone" style={{ fontSize: '1.2em' }}>ເບີໂທ</label>
     <div className="p-inputgroup flex-1">
         <span className="p-inputgroup-addon">
-            <FaMobileAlt className="text-gray-600" />
+            <FaMobileAlt className="text-blue-500" />
         </span>
         <InputText 
             id="phone" 
@@ -288,7 +284,7 @@ const AddSupplierDialog: React.FC<AddSupplierDialogProps> = ({ visible, onHide, 
     <label htmlFor="note" style={{ fontSize: '1.2em' }}>ໝາຍເຫດ</label>
     <div className="p-inputgroup flex-1">
         <span className="p-inputgroup-addon">
-            <FaClipboardList className="text-gray-600" />
+            <FaClipboardList className="text-blue-500" />
         </span>
         <InputText 
             id="note" 
@@ -298,98 +294,95 @@ const AddSupplierDialog: React.FC<AddSupplierDialogProps> = ({ visible, onHide, 
             placeholder="ກະລຸນາປ້ອນໝາຍເຫດ"
         />
     </div>
-   
 </div>
                 </div>
                 <div className="p-fluid">
-    <h3 className="flex align-items-center">
-        <FaUniversity className="mr-2" />
-        ລາຍລະອຽດບັນຊີ
-    </h3>
-    <DataTable  value={accounts} 
+                <h3 className="flex align-items-center">
+    <FaUniversity className="mr-2 text-blue-500" />
+    ລາຍລະອຽດບັນຊີ
+</h3>
+<DataTable value={accounts} 
     rows={5} 
     className="p-datatable-sm bg-gray-300"
     showGridlines
- 
-    >
-        <Column 
-            field="index" 
-            header="ລຳດັບ" 
-            body={(rowData, column) => column.rowIndex + 1} 
-            style={{ width: '3%', minWidth: '3rem' }} 
-        />
-        <Column 
-            field="accountName" 
-            header="ທະນາຄານ" 
-            body={(rowData, column) => (
-                <div className="p-inputgroup flex-1">
-                    <span className="p-inputgroup-addon">
-                        <FaUniversity className="text-gray-600" />
-                    </span>
-                    <Dropdown
-                        value={rowData.accountName}
-                        options={banks}
-                        onChange={(e) => handleInputChange(column.rowIndex, 'accountName', e.value)}
-                        placeholder="ເລືອກທະນາຄານ"
-                        className="w-full"
-                    />
-                </div>
-            )} 
-            style={{ width: '30%', minWidth: '10rem' }} 
-        />
-        <Column 
-            field="accountNumber" 
-            header="ເລກບັນຊີ" 
-            body={(rowData, column) => (
-                <div className="p-inputgroup flex-1">
-                    <span className="p-inputgroup-addon">
-                        <FaCreditCard className="text-gray-600" />
-                    </span>
-                    <InputText
-                        type="text"
-                        value={rowData.accountNumber}
-                        onChange={(e) => handleInputChange(column.rowIndex, 'accountNumber', e.target.value)}
-                        placeholder="ກະລຸນາເພິ່ມເລກບັນຊີ"
-                        className="w-full"
-                    />
-                </div>
-            )} 
-            style={{ width: '30%', minWidth: '10rem' }} 
-        />
-        <Column 
-            field="currency" 
-            header="ສະກຸນເງິນ" 
-            body={(rowData, column) => (
-                <div className="p-inputgroup flex-1">
-                    <span className="p-inputgroup-addon">
-                        <FaMoneyBillWave className="text-gray-600" />
-                    </span>
-                    <Dropdown
-                        value={rowData.currency}
-                        options={currencies}
-                        onChange={(e) => handleInputChange(column.rowIndex, 'currency', e.value)}
-                        placeholder="ເລືອກສະກຸນເງິນ"
-                        className="w-full"
-                    />
-                </div>
-            )} 
-            style={{ width: '20%', minWidth: '10rem' }} 
-        />
-        <Column 
-            header="ການຈັດການ" 
-            body={(rowData, column) => (
-                <div className="flex justify-content-center">
-                    <Button 
-                       
-icon={<FaTrash />}
-                        className="p-button-danger " 
-                        onClick={() => handleDeleteAccount(column.rowIndex)} 
-                    />
-                </div>
-            )} 
-            style={{ width: '10%', minWidth: '6rem' }} 
-        />
-    </DataTable>
+>
+    <Column 
+        field="index" 
+        header="ລຳດັບ" 
+        body={(rowData, column) => column.rowIndex + 1} 
+        style={{ width: '3%', minWidth: '3rem' }} 
+    />
+    <Column 
+        field="accountName" 
+        header="ທະນາຄານ" 
+        body={(rowData, column) => (
+            <div className="p-inputgroup flex-1">
+                <span className="p-inputgroup-addon">
+                    <FaUniversity className="text-blue-500" />
+                </span>
+                <Dropdown
+                    value={rowData.accountName}
+                    options={banks}
+                    onChange={(e) => handleInputChange(column.rowIndex, 'accountName', e.value)}
+                    placeholder="ເລືອກທະນາຄານ"
+                    className="w-full"
+                />
+            </div>
+        )} 
+        style={{ width: '30%', minWidth: '10rem' }} 
+    />
+    <Column 
+        field="accountNumber" 
+        header="ເລກບັນຊີ" 
+        body={(rowData, column) => (
+            <div className="p-inputgroup flex-1">
+                <span className="p-inputgroup-addon">
+                    <FaCreditCard className="text-blue-500" />
+                </span>
+                <InputText
+                    type="text"
+                    value={rowData.accountNumber}
+                    onChange={(e) => handleInputChange(column.rowIndex, 'accountNumber', e.target.value)}
+                    placeholder="ກະລຸນາເພິ່ມເລກບັນຊີ"
+                    className="w-full"
+                />
+            </div>
+        )} 
+        style={{ width: '30%', minWidth: '10rem' }} 
+    />
+    <Column 
+        field="currency" 
+        header="ສະກຸນເງິນ" 
+        body={(rowData, column) => (
+            <div className="p-inputgroup flex-1">
+                <span className="p-inputgroup-addon">
+                    <FaMoneyBillWave className="text-blue-500" />
+                </span>
+                <Dropdown
+                    value={rowData.currency}
+                    options={currencies}
+                    onChange={(e) => handleInputChange(column.rowIndex, 'currency', e.value)}
+                    placeholder="ເລືອກສະກຸນເງິນ"
+                    className="w-full"
+                />
+            </div>
+        )} 
+        style={{ width: '20%', minWidth: '10rem' }} 
+    />
+    <Column 
+        header="ການຈັດການ" 
+        body={(rowData, column) => (
+            <div className="flex justify-content-center">
+                <Button 
+                    icon={<FaTrash className="" />}
+                    className="p-button-danger" 
+                    onClick={() => handleDeleteAccount(column.rowIndex)} 
+                />
+            </div>
+        )} 
+        style={{ width: '5%', minWidth: '6rem' }} 
+    />
+</DataTable>
     <div className="mt-3">
     <Button 
     label="ເພີ່ມບັນຊີ" 

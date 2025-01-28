@@ -1,20 +1,48 @@
 'use client';
-
-import React, { useState, useEffect, useContext } from 'react';
+import { BudgetGroupDialog } from '@/view/app/components/BudgetGroup/BudgetGroup';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Button } from 'primereact/button';
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 import { DataTable } from 'primereact/datatable';
 import { Column, ColumnBodyOptions } from 'primereact/column';
 import { BudgetGroupService } from '@/public/demo/service/BudgetGroupService';
 import { Demo } from '@/types/demo';
+
 import { LayoutContext } from '@/layout/context/layoutcontext';
 import '@/assets/styles/scss/badges.scss';
 import { SplitButton } from 'primereact/splitbutton';
 import { InputText } from 'primereact/inputtext';
 import { FilterMatchMode, FilterOperator } from 'primereact/api';
+import { Toast } from 'primereact/toast';
 
 const BudgetGroupPage = () => {
     const { layoutConfig } = useContext(LayoutContext);
+    const [displayDialog, setDisplayDialog] = useState(false);
+    const toast = useRef<Toast>(null);
+    const [loading, setLoading] = useState(false);
+
+    const handleSave = (budgetGroup: Demo.BudgetGroup & { type: string; group: string; code: string }) => {
+        try {
+            BudgetGroupService.addBudgetGroup(budgetGroup).then(() => {
+                setDisplayDialog(false);
+                BudgetGroupService.getBudgetGroups().then((data) => setBudgetGroups(data));
+                toast.current?.show({
+                    severity: 'success',
+                    summary: 'ສຳເລັດ',
+                    detail: 'ບັນທຶກຂໍ້ມູນສຳເລັດ',
+                    life: 3000
+                });
+            });
+        } catch (error) {
+            console.error('Save error:', error);
+            toast.current?.show({
+                severity: 'error',
+                summary: 'ຜິດພາດ',
+                detail: 'ເກີດຂໍ້ຜິດພາດໃນການບັນທຶກຂໍ້ມູນ',
+                life: 3000
+            });
+        }
+    };
 
     const orderWeek = [
         { name: 'This Week', code: '1' },
@@ -103,6 +131,23 @@ const BudgetGroupPage = () => {
             icon: 'pi pi-trash'
         },
     ];
+    
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            try {
+                const data = await BudgetGroupService.getBudgetGroups();
+                console.log('Fetched budget groups:', data);
+                setBudgetGroups(data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchData();
+        initFilters();
+    }, []);
 
     const renderHeader = () => {
         const handleReset = () => {
@@ -111,18 +156,34 @@ const BudgetGroupPage = () => {
         };
 
         return (
-            <div className="flex justify-content-between align-items-center ">
-                <h4 className="text-2xl font-bold text-center my-4">ໝວດໝູ່ງົບປະມານ</h4>
-                <div className="flex justify-content-end items-center">
-                    <Dropdown options={orderWeek} value={selectedOrderWeek} optionLabel="name" onChange={recentSales} style={{ width: '12rem' }} />
-                    <span className="ml-2">
-                        <InputText value={globalFilter || ''} onChange={onGlobalFilterChange} placeholder="ກະລຸນຫາປ້ອນຄຳຄົ້ນຫາ..." style={{ width: '300px' }} />
-                        {globalFilter && (
-                            <i className="pi pi-times" onClick={handleReset} style={{ cursor: 'pointer' }} />
-                        )}
-                    </span>
-                </div>
+            <div className="flex justify-between items-center mb-4 gap-2">
+            <div className="flex items-center gap-4">
+                <span className="p-input-icon-left">
+                    <i className="pi pi-search" />
+                    <InputText 
+                        value={globalFilter || ''} 
+                        onChange={onGlobalFilterChange} 
+                        placeholder="ກະລຸນຫາປ້ອນຄຳຄົ້ນຫາ..." 
+                        style={{ width: '400px' }} 
+                    />
+                </span>
+                {globalFilter && (
+                    <i 
+                        className="pi pi-times cursor-pointer" 
+                        onClick={handleReset} 
+                    />
+                )}
             </div>
+            <div className='flex justify-end gap-4'>
+                <Button 
+                    label="ເພີ່ມໝວດງົບປະມານ" 
+                    icon="pi pi-plus" 
+                    onClick={() => setDisplayDialog(true)} 
+                    className="p-button-info"
+                    style={{ width: '180px' }}
+                />
+            </div>
+        </div>
         );
     };
 
@@ -130,37 +191,60 @@ const BudgetGroupPage = () => {
 
     return (
         <div className="grid p-fluid">
+            <BudgetGroupDialog 
+                visible={displayDialog}
+                onHide={() => setDisplayDialog(false)}
+                onSave={handleSave}
+            />
             <div className="col-12">
                 <div className="card">
                     {header}
                     <DataTable 
-                        value={budgetGroups} 
-                        rows={10} 
+                        value={budgetGroups}
                         paginator 
-                        responsiveLayout="scroll" 
+                        rows={10}
+                        dataKey="id"
+                        loading={loading}
+                        emptyMessage="ບໍ່ພົບຂໍ້ມູນ"
                         className="p-datatable-gridlines"
+                        responsiveLayout="scroll"
                         tableStyle={{ minWidth: '50rem' }}
                         stripedRows
                         showGridlines
                         rowHover
-                        currentPageReportTemplate="ສະແດງ {first} ຫາ {last} of {totalRecords}"
-                        paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                        rowsPerPageOptions={[10, 25, 50]}
-                        paginatorClassName="p-3 border-t bg-gray-50"
                         filters={filters}
+                        globalFilterFields={['type', 'group', 'code', 'name', 'description', 'status']}
                     >
                         <Column 
                             header="ລຳດັບ" 
                             body={(data, options) => <span>{options.rowIndex + 1}</span>} 
-                            headerClassName="bg-white text-black py-3 font-semibold"
+                            headerClassName="bg-gray-300 text-gray-700 py-3 font-semibold"
                             bodyClassName="py-3"
                             style={{ width: '5%' }} 
                         />
                         <Column 
-                            field="id" 
+                            field="type" 
+                            body={bodyTemplate} 
+                            header="ປະເພດງົບປະມານ" 
+                            headerClassName="bg-gray-300 text-gray-700 py-3 font-semibold"
+                            bodyClassName="py-3"
+                            sortable 
+                            style={{ width: '15%' }} 
+                        />
+                        <Column 
+                            field="group" 
+                            body={bodyTemplate} 
+                            header="ກຸ່ມງົບປະມານ" 
+                            headerClassName="bg-gray-300 text-gray-700 py-3 font-semibold"
+                            bodyClassName="py-3"
+                            sortable 
+                            style={{ width: '15%' }} 
+                        />
+                        <Column 
+                            field="code" 
                             body={bodyTemplate} 
                             header="ລະຫັດງົບປະມານ" 
-                            headerClassName="bg-white text-black py-3 font-semibold"
+                            headerClassName="bg-gray-300 text-gray-700 py-3 font-semibold"
                             bodyClassName="py-3"
                             sortable 
                             style={{ width: '10%' }} 
@@ -169,36 +253,42 @@ const BudgetGroupPage = () => {
                             field="name" 
                             body={bodyTemplate} 
                             header="ຊື່ງົບປະມານ" 
-                            headerClassName="bg-white text-black py-3 font-semibold"
+                            headerClassName="bg-gray-300 text-gray-700 py-3 font-semibold"
                             bodyClassName="py-3"
                             sortable 
-                            style={{ width: '30%' }} 
+                            style={{ width: '20%' }} 
                         />
                         <Column 
-                            field="date" 
+                            field="description" 
                             body={bodyTemplate} 
-                            header="ວັນ/ເດືອນ/ປີ" 
-                            headerClassName="bg-white text-black py-3 font-semibold"
+                            header="ລາຍລະອຽດງົບປະມານ" 
+                            headerClassName="bg-gray-300 text-gray-700 py-3 font-semibold"
                             bodyClassName="py-3"
                             sortable 
-                            style={{ width: '10%' }} 
+                            style={{ width: '25%' }} 
                         />
                         <Column 
                             field="status" 
                             body={statusBodyTemplate} 
                             header="ສະຖານະ" 
-                            headerClassName="bg-white text-black py-3 font-semibold"
+                            headerClassName="bg-gray-300 text-gray-700 py-3 font-semibold"
                             bodyClassName="py-3"
                             sortable 
                             style={{ width: '10%' }} 
                         />
                         <Column 
-                            headerStyle={{ width: '1%', textAlign: 'center' }} 
-                            headerClassName="bg-white text-black py-3 font-semibold"
+                            headerStyle={{ width: '10%', textAlign: 'center' }} 
+                            headerClassName="bg-gray-300 text-gray-700 py-3 font-semibold"
                             header="ການຈັດການ" 
                             bodyClassName="text-center py-3"
                             body={(rowData) => (
-                                <SplitButton label="ລາຍລະອຽດ" icon="pi pi-check" model={items} className="p-button-sm" style={{ width: '140px' }} />
+                                <SplitButton 
+                                    label="ລາຍລະອຽດ" 
+                                    icon="pi pi-check" 
+                                    model={items} 
+                                    className="p-button-sm" 
+                                    style={{ width: '140px' }} 
+                                />
                             )} 
                         />
                     </DataTable>

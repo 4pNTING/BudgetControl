@@ -2,73 +2,103 @@
     "data": [
         {
             "id": "2000",
-            "name": "Marketing Budget",
-            "description": "Budget for marketing activities",
+            "type": "ງົບປະຈຳປີ",
+            "group": "ຈັດການຕະຫຼາດ",
+            "code": "MKT-001",
+            "name": "ງົບປະມານການຕະຫຼາດ",
+            "description": "ງົບປະມານສຳລັບກິດຈະກຳການຕະຫຼາດ",
             "date": "2023-01-01",
-            "status": "Approved"
+            "status": "ACTIVE"
         },
         {
             "id": "2001",
-            "name": "Development Budget",
-            "description": "Budget for development projects",
+            "type": "ງົບປະຈຳປີ",
+            "group": "ພັດທະນາ",
+            "code": "DEV-001",
+            "name": "ງົບປະມານການພັດທະນາ",
+            "description": "ງົບປະມານສຳລັບການພັດທະນາໂຄງການ",
             "date": "2023-02-01",
-            "status": "Pending"
+            "status": "ACTIVE"
         },
         {
             "id": "2002",
-            "name": "Operations Budget",
-            "description": "Budget for operational expenses",
+            "type": "ງົບພິເສດ",
+            "group": "ການເງິນ",
+            "code": "FIN-001",
+            "name": "ງົບປະມານການເງິນ",
+            "description": "ງົບປະມານສຳລັບການບໍລິຫານການເງິນ",
             "date": "2023-03-01",
-            "status": "Approved"
+            "status": "INACTIVE"
         },
         {
             "id": "2003",
-            "name": "HR Budget",
-            "description": "Budget for human resources",
+            "type": "ງົບປະຈຳປີ",
+            "group": "ບຸກຄະລາກອນ",
+            "code": "HR-001",
+            "name": "ງົບປະມານບຸກຄະລາກອນ",
+            "description": "ງົບປະມານສຳລັບການພັດທະນາບຸກຄະລາກອນ",
             "date": "2023-04-01",
-            "status": "Rejected"
+            "status": "ACTIVE"
         },
         {
             "id": "2004",
-            "name": "IT Budget",
-            "description": "Budget for IT infrastructure",
+            "type": "ງົບພິເສດ",
+            "group": "ໄອທີ",
+            "code": "IT-001",
+            "name": "ງົບປະມານໄອທີ",
+            "description": "ງົບປະມານສຳລັບການພັດທະນາລະບົບໄອທີ",
             "date": "2023-05-01",
-            "status": "Approved"
+            "status": "ACTIVE"
         },
         {
             "id": "2005",
-            "name": "Sales Budget",
-            "description": "Budget for sales activities",
+            "type": "ງົບປະຈຳປີ",
+            "group": "ຂາຍ",
+            "code": "SALE-001",
+            "name": "ງົບປະມານຂາຍ",
+            "description": "ງົບປະມານສຳລັບການຂາຍ",
             "date": "2023-06-01",
-            "status": "Pending"
+            "status": "INACTIVE"
         },
         {
             "id": "2006",
-            "name": "Customer Support Budget",
-            "description": "Budget for customer support",
+            "type": "ງົບພິເສດ",
+            "group": "ບໍລິການ",
+            "code": "SVC-001",
+            "name": "ງົບປະມານບໍລິການ",
+            "description": "ງົບປະມານສຳລັບການບໍລິການລູກຄ້າ",
             "date": "2023-07-01",
-            "status": "Approved"
+            "status": "ACTIVE"
         },
         {
             "id": "2007",
-            "name": "Research Budget",
-            "description": "Budget for research and development",
+            "type": "ງົບປະຈຳປີ",
+            "group": "ວິໄຈ",
+            "code": "RD-001",
+            "name": "ງົບປະມານວິໄຈ",
+            "description": "ງົບປະມານສຳລັບການຄົ້ນຄວ້າແລະພັດທະນາ",
             "date": "2023-08-01",
-            "status": "Pending"
+            "status": "ACTIVE"
         },
         {
             "id": "2008",
-            "name": "Training Budget",
-            "description": "Budget for employee training",
+            "type": "ງົບພິເສດ",
+            "group": "ອົບຮົມ",
+            "code": "TRN-001",
+            "name": "ງົບປະມານອົບຮົມ",
+            "description": "ງົບປະມານສຳລັບການອົບຮົມພະນັກງານ",
             "date": "2023-09-01",
-            "status": "Approved"
+            "status": "INACTIVE"
         },
         {
             "id": "2009",
-            "name": "Facilities Budget",
-            "description": "Budget for facilities management",
+            "type": "ງົບປະຈຳປີ",
+            "group": "ອາຄານ",
+            "code": "FAC-001",
+            "name": "ງົບປະມານອາຄານ",
+            "description": "ງົບປະມານສຳລັບການບໍລິຫານອາຄານ",
             "date": "2023-10-01",
-            "status": "Rejected"
+            "status": "ACTIVE"
         }
     ]
 }

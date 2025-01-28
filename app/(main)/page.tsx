@@ -10,7 +10,7 @@ import { Menu } from 'primereact/menu';
 import { ProductService } from '../../public/demo/service/ProductService';
 import { Demo } from '@/types/demo';
 import { LayoutContext } from '../../layout/context/layoutcontext';
-
+import '@/assets/styles/scss/badges.scss';
 const ordersChart = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
     datasets: [

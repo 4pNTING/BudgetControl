@@ -45,6 +45,15 @@
         background: #FFCDD2 !important;
         color: #C63737 !important;
     }
+    &.status-ACTIVE {
+        background: #C8E6C9;
+        color: #256029;
+    }
+    
+    &.status-INACTIVE {
+        background: #FFCDD2;
+        color: #C63737;
+    }
 }
 
 .currency-badge {
