@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Button } from 'primereact/button';
 import { DataTable } from 'primereact/datatable';
 import { Column, ColumnBodyOptions } from 'primereact/column';
-import { SupplierService } from '@/public/demo/service/SupplierService';
+import { DemoService } from '@/public/demo/DemoService';
 import { Demo } from '@/types/demo';
 import { LayoutContext } from '@/layout/context/layoutcontext';
 import '@/assets/styles/scss/badges.scss';
@@ -27,7 +27,7 @@ const SupplierPage = () => {
     const toast = useRef<Toast>(null);
 
     useEffect(() => {
-        SupplierService.getSuppliers().then((data) => setSuppliers(data));
+        DemoService.getSuppliers().then((data) => setSuppliers(data));
         initFilters();
     }, []);
 
@@ -81,33 +81,7 @@ const SupplierPage = () => {
         router.push(`/admin/supplier/edit/${id}`);
     };
 
-    const handleDelete = (id: number) => {
-        confirmDialog({
-            message: 'Are you sure you want to delete this record?',
-            header: 'Confirmation',
-            icon: 'pi pi-exclamation-triangle',
-            acceptLabel: 'Yes',
-            rejectLabel: 'No',
-            accept: async () => {
-                try {
-                    await SupplierService.deleteSupplier(id);
-                    setSuppliers(prev => prev.filter(s => s.id !== id));
-                    toast.current?.show({ 
-                        severity: 'success', 
-                        summary: 'Success', 
-                        detail: 'Record deleted successfully' 
-                    });
-                } catch (error) {
-                    console.error('Delete error:', error);
-                    toast.current?.show({ 
-                        severity: 'error', 
-                        summary: 'Error', 
-                        detail: 'An error occurred while deleting the record' 
-                    });
-                }
-            }
-        });
-    };
+    
 
     const items = [
         {

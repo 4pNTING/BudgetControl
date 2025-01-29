@@ -1,0 +1,74 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "ອັນ",
+            "description": "Used for counting individual items."
+        },
+        {
+            "id": 2,
+            "name": "ກັ່ອງ",
+            "description": "Used for items packaged in boxes."
+        },
+        {
+            "id": 3,
+            "name": "ຂວດ",
+            "description": "Used for liquid or items stored in bottles."
+        },
+        {
+            "id": 4,
+            "name": "ຖົງ",
+            "description": "Used for items stored in bags."
+        },
+        {
+            "id": 5,
+            "name": "ລັງ",
+            "description": "Used for items stored in crates."
+        },
+        {
+            "id": 6,
+            "name": "ແມັດ",
+            "description": "Used for measuring length."
+        },
+        {
+            "id": 7,
+            "name": "ກິໂລ",
+            "description": "Used for measuring weight."
+        },
+        {
+            "id": 8,
+            "name": "ລິດ",
+            "description": "Used for measuring volume."
+        },
+        {
+            "id": 9,
+            "name": "ແຜ່ນ",
+            "description": "Used for flat items like paper or metal sheets."
+        },
+        {
+            "id": 10,
+            "name": "ຄັນ",
+            "description": "Used for vehicles or machinery."
+        },
+        {
+            "id": 11,
+            "name": "ໂຕ",
+            "description": "Used for general items or products."
+        },
+        {
+            "id": 12,
+            "name": "ແພັກ",
+            "description": "Used for items sold in packs."
+        },
+        {
+            "id": 13,
+            "name": "ດ້າມ",
+            "description": "Used for tools or items with handles."
+        },
+        {
+            "id": 14,
+            "name": "ຄູ່",
+            "description": "Used for items sold in pairs."
+        }
+    ]
+}

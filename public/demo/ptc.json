@@ -1,0 +1,136 @@
+{
+    "data": [
+        {
+            "id": "1",
+            "createdAt": "2024-01-24",
+            "ptcNo": "PTC1001",
+            "buName": "ຫ້ອງການໃຫຍ່",
+            "title": "Software License Renewal",
+            "totalAmount": 850000,
+            "requester": "John Smith",
+            "approver": "David Johnson",
+            "status": "Pending",
+            "budgetCode": "E3028-Other Expenses"
+        },
+        {
+            "id": "2",
+            "createdAt": "2024-01-23",
+            "ptcNo": "PTC1002",
+            "buName": "ຫ້ອງການໃຫຍ່",
+            "title": "Office Equipment Purchase",
+            "totalAmount": 450000,
+            "requester": "Emma Wilson",
+            "approver": "Lisa Anderson",
+            "status": "Approved",
+            "budgetCode": "OFC01-Office Equipment"
+        },
+        {
+            "id": "3",
+            "createdAt": "2024-01-22",
+            "ptcNo": "PTC1003",
+            "buName": "ສະຫວັນໄອເຕັກ",
+            "title": "Marketing Campaign Materials",
+            "totalAmount": 675000,
+            "requester": "Michael Chen",
+            "approver": "James Williams",
+            "status": "Rejected",
+            "budgetCode": "OFC01-Office Equipment"
+        },
+        {
+            "id": "4",
+            "createdAt": "2024-01-21",
+            "ptcNo": "PTC1004",
+            "buName": "ສະຫວັນໄອເຕັກ",
+            "title": "Cloud Infrastructure Services",
+            "totalAmount": 920000,
+            "requester": "Sarah Davis",
+            "approver": "Maria Garcia",
+            "status": "In Review",
+            "budgetCode": "E3028-Other Expenses"
+        },
+        {
+            "id": "5",
+            "createdAt": "2024-01-20",
+            "ptcNo": "PTC1005",
+            "buName": "ສະຫວັນໄອເຕັກ",
+            "title": "Research Equipment",
+            "totalAmount": 780000,
+            "requester": "Robert Taylor",
+            "approver": "Thomas Brown",
+            "status": "Approved",
+            "budgetCode": "OFC01-Office Equipment"
+        },
+        {
+            "id": "6",
+            "createdAt": "2024-01-19",
+            "ptcNo": "PTC1006",
+            "buName": "ສະຫວັນໄອເຕັກ",
+            "title": "Employee Training Program",
+            "totalAmount": 320000,
+            "requester": "Patricia Moore",
+            "approver": "David Johnson",
+            "status": "Pending",
+            "budgetCode": "OFC01-Office Equipment"
+        },
+        {
+            "id": "7",
+            "createdAt": "2024-01-18",
+            "ptcNo": "PTC1007",
+            "buName": "ຕະຫຼາດທົ່ງຂັນຄຳ",
+            "title": "Office Renovation",
+            "totalAmount": 890000,
+            "requester": "James Martin",
+            "approver": "Lisa Anderson",
+            "status": "Approved",
+            "budgetCode": ""
+        },
+        {
+            "id": "8",
+            "createdAt": "2024-01-17",
+            "ptcNo": "PTC1008",
+            "buName": "ຕະຫຼາດທົ່ງຂັນຄຳ",
+            "title": "Security System Upgrade",
+            "totalAmount": 550000,
+            "requester": "Jennifer Lee",
+            "approver": "James Williams",
+            "status": "In Review",
+            "budgetCode": ""
+        },
+        {
+            "id": "9",
+            "createdAt": "2024-01-16",
+            "ptcNo": "PTC1009",
+            "buName": "ຕະຫຼາດທົ່ງຂັນຄຳ",
+            "title": "Software Development Tools",
+            "totalAmount": 420000,
+            "requester": "William Thompson",
+            "approver": "Maria Garcia",
+            "status": "Approved",
+            "budgetCode": ""
+        },
+        {
+            "id": "10",
+            "createdAt": "2024-01-15",
+            "ptcNo": "PTC1010",
+            "buName": "ຕະຫຼາດທົ່ງຂັນຄຳ",
+            "title": "Network Infrastructure",
+            "totalAmount": 680000,
+            "requester": "Elizabeth White",
+            "approver": "Thomas Brown",
+            "status": "Rejected",
+            "budgetCode": ""
+        },
+        {
+            "id": "11",
+            "createdAt": "2024-01-14",
+            "ptcNo": "PTC1011",
+            "buName": "ຕະຫຼາດທົ່ງຂັນຄຳ",
+            "title": "Data Center Equipment",
+            "totalAmount": 950000,
+            "requester": "Richard Clark",
+            "approver": "David Johnson",
+            "status": "Approved",
+            "budgetCode": ""
+        }
+    ]
+}

@@ -7,7 +7,7 @@ import { Dropdown } from 'primereact/dropdown';
 import { FaLayerGroup, FaCheckCircle, FaCode, FaList, FaInfoCircle, FaTimes } from 'react-icons/fa';
 import { classNames } from 'primereact/utils';
 import { Toast } from 'primereact/toast';
-import { BudgetGroupService } from '@/public/demo/service/BudgetGroupService';
+import { DemoService } from '@/public/demo/DemoService';
 import type { Demo } from '@/types';
 
 export interface BudgetGroupDialogProps {
@@ -67,7 +67,7 @@ export const BudgetGroupDialog: React.FC<BudgetGroupDialogProps> = ({ visible, o
     useEffect(() => {
         const fetchGroups = async () => {
             try {
-                const data = await BudgetGroupService.getGroupData();
+                const data = await DemoService.getGroupData();
                 const options = data.map(group => ({
                     label: `${group.label} - ${group.code}`,
                     code: group.code,

@@ -5,7 +5,7 @@ import { Button } from 'primereact/button';
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 import { DataTable } from 'primereact/datatable';
 import { Column, ColumnBodyOptions } from 'primereact/column';
-import { BudgetGroupService } from '@/public/demo/service/BudgetGroupService';
+import { DemoService } from '@/public/demo/DemoService';
 import { Demo } from '@/types/demo';
 
 import { LayoutContext } from '@/layout/context/layoutcontext';
@@ -22,26 +22,26 @@ const BudgetGroupPage = () => {
     const [loading, setLoading] = useState(false);
 
     const handleSave = (budgetGroup: Demo.BudgetGroup & { type: string; group: string; code: string }) => {
-        try {
-            BudgetGroupService.addBudgetGroup(budgetGroup).then(() => {
-                setDisplayDialog(false);
-                BudgetGroupService.getBudgetGroups().then((data) => setBudgetGroups(data));
-                toast.current?.show({
-                    severity: 'success',
-                    summary: 'ສຳເລັດ',
-                    detail: 'ບັນທຶກຂໍ້ມູນສຳເລັດ',
-                    life: 3000
-                });
-            });
-        } catch (error) {
-            console.error('Save error:', error);
-            toast.current?.show({
-                severity: 'error',
-                summary: 'ຜິດພາດ',
-                detail: 'ເກີດຂໍ້ຜິດພາດໃນການບັນທຶກຂໍ້ມູນ',
-                life: 3000
-            });
-        }
+        // try {
+        //     DemoService.addBudgetGroup(budgetGroup).then(() => {
+        //         setDisplayDialog(false);
+        //         DemoService.getBudgetGroups().then((data) => setBudgetGroups(data));
+        //         toast.current?.show({
+        //             severity: 'success',
+        //             summary: 'ສຳເລັດ',
+        //             detail: 'ບັນທຶກຂໍ້ມູນສຳເລັດ',
+        //             life: 3000
+        //         });
+        //     });
+        // } catch (error) {
+        //     console.error('Save error:', error);
+        //     toast.current?.show({
+        //         severity: 'error',
+        //         summary: 'ຜິດພາດ',
+        //         detail: 'ເກີດຂໍ້ຜິດພາດໃນການບັນທຶກຂໍ້ມູນ',
+        //         life: 3000
+        //     });
+        // }
     };
 
     const orderWeek = [
@@ -55,19 +55,19 @@ const BudgetGroupPage = () => {
     const [filters, setFilters] = useState({});
 
     useEffect(() => {
-        BudgetGroupService.getBudgetGroups().then((data) => setBudgetGroups(data));
+        DemoService.getBudgetGroups().then((data) => setBudgetGroups(data));
         initFilters();
     }, []);
 
     const recentSales = (event: DropdownChangeEvent) => {
         if (event.value.code === '0') {
-            BudgetGroupService.getBudgetGroups().then((data) => {
+            DemoService.getBudgetGroups().then((data) => {
                 setBudgetGroups(
                     data.sort((a: any, b: any) => b.id - a.id)
                 );
             });
         } else {
-            BudgetGroupService.getBudgetGroups().then((data) => setBudgetGroups(data));
+            DemoService.getBudgetGroups().then((data) => setBudgetGroups(data));
         }
         setSelectedOrderWeek(event.value);
     };
@@ -136,7 +136,7 @@ const BudgetGroupPage = () => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const data = await BudgetGroupService.getBudgetGroups();
+                const data = await DemoService.getBudgetGroups();
                 console.log('Fetched budget groups:', data);
                 setBudgetGroups(data);
             } catch (error) {
