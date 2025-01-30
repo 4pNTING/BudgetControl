@@ -126,6 +126,23 @@ declare namespace Demo {
         objectURL?: string;
     }
 
+    interface BudgetGroupCB {
+        type: string;
+        group: string;
+        code: string;
+        name: string;
+        description: string;
+        status: string;
+    }
+   interface BudgetGroup {
+        type: string;
+        group: string;
+        code: string;
+        name: string;
+        description: string;
+        status: string;
+    }
+
     interface Currency {
         id: number;
         code: string;
@@ -167,17 +184,14 @@ declare namespace Demo {
         currency: string; // Added currency field
     }
     export interface BudgetGroup {
-        id: string;
+        id?: string;
+        type: string;
+        group: string;
+        code: string;
         name: string;
         description: string;
-        date: string;
-        status: BudgetGroupStatus;
-        amount?: number;
-        createdBy?: string;
-        updatedBy?: string;
-        createdAt?: string;
-        updatedAt?: string;
-        isActive?: boolean;
+        date?: string;
+        status: 'ACTIVE' | 'INACTIVE';
     }
 
     interface IFile extends Base {

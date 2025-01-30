@@ -1,0 +1,93 @@
+{
+    "data": [
+        {
+            "label": "TKK-Incomes",
+            "code": "4600",
+            "items": [
+                { "label": "01-TKK Rental, MA Revenue", "value": "4600.01" },
+                { "label": "02-TKK Fresh Market", "value": "4600.02" },
+                { "label": "03-TKK Events Revenue", "value": "4600.03" },
+                { "label": "04-TKK Walking Street Revenue", "value": "4600.04" },
+                { "label": "05-TKK Cash Collection from AR Aging", "value": "4600.05" },
+                { "label": "06-TKK Utilities Revenue", "value": "4600.06" },
+                { "label": "07-Administration Income", "value": "4600.07" },
+                { "label": "08-TKK Food Court", "value": "4600.08" },
+                { "label": "09-TKK Sharing Income - F2", "value": "4600.09" },
+                { "label": "10-TKK Other Revenue", "value": "4600.10" }
+            ]
+        },
+        {
+            "label": "GOGS",
+            "code": "5006",
+            "items": [
+                { "label": "01-Rental, MA Revenue", "value": "5006.01" },
+                { "label": "02-of Events", "value": "5006.02" },
+                { "label": "03-Fresh Market", "value": "5006.03" },
+                { "label": "04-Utilities", "value": "5006.04" },
+                { "label": "05-Others", "value": "5006.05" },
+                { "label": "06-Food Court", "value": "5006.06" },
+                { "label": "07-Sharing Income", "value": "5006.07" }
+            ]
+        },
+        {
+            "label": "TKK-Marketing-Costs",
+            "code": "6400",
+            "items": [
+                { "label": "01-Advertising-Facebook charge", "value": "6400.01" },
+                { "label": "02-Giveaway & Promotion", "value": "6400.02" },
+                { "label": "03-Other Promotion and Marketing", "value": "6400.03" },
+                { "label": "08-Season materials' decoration", "value": "6400.08" }
+            ]
+        },
+        {
+            "label": "G&A",
+            "code": "6500",
+            "items": [
+                { "label": "01-Vehicle Rental", "value": "6500.01" },
+                { "label": "02-Vehicle Fuel", "value": "6500.02" },
+                { "label": "03-Vehicle Repair & Maintenance", "value": "6500.03" },
+                { "label": "04-Property Insurances", "value": "6500.04" },
+                { "label": "05-Vehicle & Other Insurances", "value": "6500.05" },
+                { "label": "06-Land Rental", "value": "6500.06" },
+                { "label": "07-Office & Other Rentals", "value": "6500.07" },
+                { "label": "08-Photocopy Rental", "value": "6500.08" },
+                { "label": "09-Office & Other Repair & Maintenance", "value": "6500.09" },
+                { "label": "10-Electricity Fees", "value": "6500.10" },
+                { "label": "11-Water Supply bills", "value": "6500.11" },
+                { "label": "12-Office Consumable", "value": "6500.12" },
+                { "label": "13-Stationary", "value": "6500.13" },
+                { "label": "14-Telephone & Internet", "value": "6500.14" },
+                { "label": "15-Audit Fee", "value": "6500.15" },
+                { "label": "16-Legal Fee", "value": "6500.16" },
+                { "label": "17-Outsourcing Cost", "value": "6500.17" },
+                { "label": "18-Consulting Fee", "value": "6500.18" },
+                { "label": "19-IT Supply & Equipment", "value": "6500.19" },
+                { "label": "20-Printing and Newspaper", "value": "6500.20" },
+                { "label": "21-Post Delivery and Freight", "value": "6500.21" },
+                { "label": "22-Security Service", "value": "6500.22" },
+                { "label": "23-Cleaning Service", "value": "6500.23" },
+                { "label": "24-Garbage Fee", "value": "6500.24" },
+                { "label": "25-Car Parking", "value": "6500.25" },
+                { "label": "26-Temporary (Casual) Workers", "value": "6500.26" },
+                { "label": "27-Uniform", "value": "6500.27" },
+                { "label": "28-GOL - Permission Fees & Support", "value": "6500.28" },
+                { "label": "30-Entertainment", "value": "6500.30" },
+                { "label": "31-Bank charges", "value": "6500.31" },
+                { "label": "32-Donation", "value": "6500.32" },
+                { "label": "33-Other expenses", "value": "6500.33" }
+            ]
+        },
+      
+        {
+            "label": "TKK-Tax&Financing",
+            "code": "6600",
+            "items": [
+                { "label": "01-Value Added Tax", "value": "6600.01" },
+                { "label": "02-Personal Income Tax", "value": "6600.02" },
+                { "label": "03-Corporate Profit Taxes", "value": "6600.03" },
+                { "label": "01-Cash Deposit Refund", "value": "8300.01" },
+                { "label": "02-Interest expense", "value": "8300.02" }
+            ]
+        }
+    ]
+}
